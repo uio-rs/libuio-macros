@@ -20,22 +20,18 @@ pub fn main(_attr: TokenStream, item: TokenStream) -> TokenStream {
 
     // Generate new Rust code based on the transformed AST
     let expanded = quote! {
-        async fn __internal_main() {
-            #block
-        }
+        async fn __internal_main() #block
 
         fn main() {
             // First we need to create a new thread pool to execute on.
             let pool = libuio::executor::ThreadPoolBuilder::new()
-                .name_prefix("executor")
+                .name_prefix("libuio-executor")
                 .create()
                 .expect("Failed to configure thread pool.");
 
             // Now we spawn our main async task, which will drive any/all async operations needed by our
             // application.
-            pool.spawn_ok(__internal_main());
-
-            pool.wait();
+            libuio::executor::block_on(__internal_main());
         }
     };
 
