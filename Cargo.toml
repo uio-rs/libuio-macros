@@ -1,0 +1,16 @@
+[package]
+name = "libuio-macros"
+version = "0.2.0"
+edition = "2021"
+authors = ["Christian Saide"]
+description = "A proc_macro crate for the libuio async framework."
+license = "Apache-2.0"
+repository = "https://github.com/uio-rs/libuio-macros"
+exclude = ["/dist", "Makefile"]
+
+[dependencies]
+quote = { version = "~1.0" }
+syn = { version = "~2.0", features = ["full"] }
+
+[lib]
+proc-macro = true
