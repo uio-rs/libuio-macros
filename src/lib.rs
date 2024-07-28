@@ -6,6 +6,7 @@ use syn::{parse_macro_input, ItemFn, ReturnType};
 pub fn main(_attr: TokenStream, item: TokenStream) -> TokenStream {
     // Parse the input tokens into a syntax tree
     let input = parse_macro_input!(item as ItemFn);
+    let block = input.block;
 
     // Check if the function is async
     if input.sig.asyncness.is_none() {
@@ -20,7 +21,7 @@ pub fn main(_attr: TokenStream, item: TokenStream) -> TokenStream {
     // Generate new Rust code based on the transformed AST
     let expanded = quote! {
         async fn __internal_main() {
-            #input.block
+            #block
         }
 
         fn main() {
