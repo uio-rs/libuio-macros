@@ -36,7 +36,5 @@ pub fn main(_attr: TokenStream, item: TokenStream) -> TokenStream {
     };
 
     // Return the generated code
-    let gen = TokenStream::from(expanded);
-    println!("generated code: {}", gen);
-    gen
+    TokenStream::from(expanded)
 }
