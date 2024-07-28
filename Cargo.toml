@@ -10,7 +10,7 @@ exclude = ["/dist", "Makefile"]
 
 [dependencies]
 quote = { version = "~1.0" }
-syn = { version = "~2.0" }
+syn = { version = "~2.0", features = ["full"] }
 
 [lib]
 proc-macro = true
