@@ -9,6 +9,8 @@ repository = "https://github.com/uio-rs/libuio-macros"
 exclude = ["/dist", "Makefile"]
 
 [dependencies]
+quote = { version = "~1.0" }
+syn = { version = "~2.0" }
 
 [lib]
 proc-macro = true
